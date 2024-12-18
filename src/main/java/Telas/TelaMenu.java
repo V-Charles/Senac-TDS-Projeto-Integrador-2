@@ -4,17 +4,34 @@
  */
 package Telas;
 
+import java.time.LocalTime;
+
 /**
  *
  * @author Vinicius charles
  */
 public class TelaMenu extends javax.swing.JFrame {
+    
+    private void saudacao(){
+        LocalTime horaLocal = LocalTime.now();
+        String msg;
+        if(horaLocal.isAfter(LocalTime.of(5, 0)) && horaLocal.isBefore(LocalTime.of(12, 0))){
+            msg = "Bom dia, seja bem vindo(a)!";
+        }else
+            if(horaLocal.isAfter(LocalTime.of(11, 59)) && horaLocal.isBefore(LocalTime.of(18, 0))){
+                msg = "Boa tarde, seja bem vindo(a)!";
+            }else{
+                msg = "Boa noite, seja bem vindo(a)!";
+            }
+        lblSaudacaoInicial.setText(msg);
+    }
 
     /**
      * Creates new form TelaMenu
      */
     public TelaMenu() {
         initComponents();
+        saudacao();
     }
 
     /**
@@ -127,27 +144,42 @@ public class TelaMenu extends javax.swing.JFrame {
         btnProdutos.setBackground(new java.awt.Color(0, 0, 0));
         btnProdutos.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         btnProdutos.setForeground(new java.awt.Color(255, 255, 255));
-        btnProdutos.setText("Produtos");
+        btnProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_packages.png"))); // NOI18N
+        btnProdutos.setText(" Produtos");
+        btnProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProdutosActionPerformed(evt);
+            }
+        });
 
         btnFornecedores.setBackground(new java.awt.Color(0, 0, 0));
         btnFornecedores.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         btnFornecedores.setForeground(new java.awt.Color(255, 255, 255));
-        btnFornecedores.setText("Fornecedores");
+        btnFornecedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_supplier.png"))); // NOI18N
+        btnFornecedores.setText(" Fornecedores");
 
         btnRalatorio.setBackground(new java.awt.Color(0, 0, 0));
         btnRalatorio.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         btnRalatorio.setForeground(new java.awt.Color(255, 255, 255));
-        btnRalatorio.setText("Relatório de movimentações");
+        btnRalatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_Report.png"))); // NOI18N
+        btnRalatorio.setText(" Relatório de movimentações");
+        btnRalatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRalatorioActionPerformed(evt);
+            }
+        });
 
         btnCadastrarFornecedor.setBackground(new java.awt.Color(0, 0, 0));
         btnCadastrarFornecedor.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         btnCadastrarFornecedor.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastrarFornecedor.setText("Cadastrar novo fornecedor");
+        btnCadastrarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_add.png"))); // NOI18N
+        btnCadastrarFornecedor.setText(" Cadastrar novo fornecedor");
 
         btnCadastrarProduto.setBackground(new java.awt.Color(0, 0, 0));
         btnCadastrarProduto.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         btnCadastrarProduto.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastrarProduto.setText("Cadastrar novo produto");
+        btnCadastrarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_add.png"))); // NOI18N
+        btnCadastrarProduto.setText(" Cadastrar novo produto");
         btnCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarProdutoActionPerformed(evt);
@@ -170,16 +202,16 @@ public class TelaMenu extends javax.swing.JFrame {
         PanelCentralLayout.setHorizontalGroup(
             PanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelCentralLayout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addGroup(PanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnRalatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnFornecedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(PanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCadastrarFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCentralLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSair)
@@ -216,6 +248,14 @@ public class TelaMenu extends javax.swing.JFrame {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProdutosActionPerformed
+
+    private void btnRalatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRalatorioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRalatorioActionPerformed
 
     /**
      * @param args the command line arguments

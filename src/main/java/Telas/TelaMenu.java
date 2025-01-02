@@ -5,6 +5,7 @@
 package Telas;
 
 import java.time.LocalTime;
+import javax.swing.JFrame;
 
 /**
  *
@@ -32,6 +33,8 @@ public class TelaMenu extends javax.swing.JFrame {
     public TelaMenu() {
         initComponents();
         saudacao();
+        
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -157,6 +160,11 @@ public class TelaMenu extends javax.swing.JFrame {
         btnFornecedores.setForeground(new java.awt.Color(255, 255, 255));
         btnFornecedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_supplier.png"))); // NOI18N
         btnFornecedores.setText(" Fornecedores");
+        btnFornecedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFornecedoresActionPerformed(evt);
+            }
+        });
 
         btnRalatorio.setBackground(new java.awt.Color(0, 0, 0));
         btnRalatorio.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
@@ -256,6 +264,12 @@ public class TelaMenu extends javax.swing.JFrame {
     private void btnRalatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRalatorioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRalatorioActionPerformed
+
+    private void btnFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornecedoresActionPerformed
+        TelaFornecedores tf = new TelaFornecedores();
+        tf.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnFornecedoresActionPerformed
 
     /**
      * @param args the command line arguments

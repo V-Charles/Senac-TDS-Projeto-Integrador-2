@@ -4,7 +4,11 @@
  */
 package Telas;
 
+import entidades.FornecedorDAO;
+import entidades.Fornecedor;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,7 +22,31 @@ public class TelaFornecedores extends javax.swing.JFrame {
     public TelaFornecedores() {
         initComponents();
         
+        FornecedorDAO forncedorDao = new FornecedorDAO();
+        String filtroNome = txtBuscaPorNome.getText().trim();
+        List<Fornecedor> fornecedores = forncedorDao.listar(filtroNome);
+        preencherTabela(fornecedores);
+        
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    
+    public void preencherTabela(List<Fornecedor> fornecedores){
+        String colunas[] = {"Id", "Nome do fornecedor", "E-mail", "Telefone", "CNPJ"};
+        String dados[][] = new String[fornecedores.size()][colunas.length];
+        
+        int i = 0;
+        for(Fornecedor f : fornecedores){
+            dados[i] = new String[]{
+                String.valueOf(f.getId()),
+                f.getNomeFornecedor(),
+                f.getEmail(),
+                f.getTelefone(),
+                f.getCnpj()
+            };
+            i++;
+        }
+        DefaultTableModel model = new DefaultTableModel(dados, colunas);
+        tblFornecedores.setModel(model);
     }
 
     /**
@@ -38,7 +66,7 @@ public class TelaFornecedores extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblFornecedores = new javax.swing.JTable();
         btnEditarFornecedor = new javax.swing.JButton();
         lblOrientacaoDeFiltro = new javax.swing.JLabel();
         lblFiltroNome = new javax.swing.JLabel();
@@ -130,7 +158,7 @@ public class TelaFornecedores extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblFornecedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -146,7 +174,7 @@ public class TelaFornecedores extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblFornecedores);
 
         btnEditarFornecedor.setBackground(new java.awt.Color(0, 0, 0));
         btnEditarFornecedor.setForeground(new java.awt.Color(255, 255, 255));
@@ -308,11 +336,11 @@ public class TelaFornecedores extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblFiltroNome;
     private javax.swing.JLabel lblFornecedores;
     private javax.swing.JLabel lblOrientacaoDeFiltro;
     private javax.swing.JLabel lbl_Icon_Logo;
+    private javax.swing.JTable tblFornecedores;
     private javax.swing.JTextField txtBuscaPorNome;
     // End of variables declaration//GEN-END:variables
 }

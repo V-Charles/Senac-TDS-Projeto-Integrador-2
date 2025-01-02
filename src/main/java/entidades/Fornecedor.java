@@ -15,7 +15,7 @@ import jakarta.persistence.Id;
  */
 
 @Entity
-public class FornecedorDTO {
+public class Fornecedor {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +26,10 @@ public class FornecedorDTO {
     private String email;
     private boolean ativo = true;
     
-    public FornecedorDTO(){
+    public Fornecedor(){
     }
 
-    public FornecedorDTO(int id, String nomeFornecedor, String cnpj, String telefone, String email, boolean ativo) {
+    public Fornecedor(int id, String nomeFornecedor, String cnpj, String telefone, String email, boolean ativo) {
         this.id = id;
         this.nomeFornecedor = nomeFornecedor;
         this.cnpj = cnpj;

@@ -53,11 +53,10 @@ public class TelaMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         PanelEsquerdo = new javax.swing.JPanel();
         PanelCentral = new javax.swing.JPanel();
+        image_Logo = new javax.swing.JLabel();
         btnProdutos = new javax.swing.JButton();
         btnFornecedores = new javax.swing.JButton();
         btnRalatorio = new javax.swing.JButton();
-        btnCadastrarFornecedor = new javax.swing.JButton();
-        btnCadastrarProduto = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,17 +74,17 @@ public class TelaMenu extends javax.swing.JFrame {
         PanelSuperior.setLayout(PanelSuperiorLayout);
         PanelSuperiorLayout.setHorizontalGroup(
             PanelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelSuperiorLayout.createSequentialGroup()
-                .addContainerGap(303, Short.MAX_VALUE)
+            .addGroup(PanelSuperiorLayout.createSequentialGroup()
+                .addContainerGap(480, Short.MAX_VALUE)
                 .addComponent(lblSaudacaoInicial)
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addContainerGap(570, Short.MAX_VALUE))
         );
         PanelSuperiorLayout.setVerticalGroup(
             PanelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelSuperiorLayout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(lblSaudacaoInicial)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         getContentPane().add(PanelSuperior, java.awt.BorderLayout.PAGE_START);
@@ -100,7 +99,7 @@ public class TelaMenu extends javax.swing.JFrame {
         );
         PanelDireitoLayout.setVerticalGroup(
             PanelDireitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
+            .addGap(0, 562, Short.MAX_VALUE)
         );
 
         getContentPane().add(PanelDireito, java.awt.BorderLayout.LINE_END);
@@ -115,7 +114,7 @@ public class TelaMenu extends javax.swing.JFrame {
         PanelInferiorLayout.setHorizontalGroup(
             PanelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInferiorLayout.createSequentialGroup()
-                .addContainerGap(787, Short.MAX_VALUE)
+                .addContainerGap(1231, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -139,12 +138,14 @@ public class TelaMenu extends javax.swing.JFrame {
         );
         PanelEsquerdoLayout.setVerticalGroup(
             PanelEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
+            .addGap(0, 562, Short.MAX_VALUE)
         );
 
         getContentPane().add(PanelEsquerdo, java.awt.BorderLayout.LINE_START);
 
         PanelCentral.setBackground(new java.awt.Color(255, 255, 255));
+
+        image_Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/InventorySystem.png.png"))); // NOI18N
 
         btnProdutos.setBackground(new java.awt.Color(0, 0, 0));
         btnProdutos.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
@@ -179,23 +180,6 @@ public class TelaMenu extends javax.swing.JFrame {
             }
         });
 
-        btnCadastrarFornecedor.setBackground(new java.awt.Color(0, 0, 0));
-        btnCadastrarFornecedor.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        btnCadastrarFornecedor.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastrarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_add.png"))); // NOI18N
-        btnCadastrarFornecedor.setText(" Cadastrar novo fornecedor");
-
-        btnCadastrarProduto.setBackground(new java.awt.Color(0, 0, 0));
-        btnCadastrarProduto.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
-        btnCadastrarProduto.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastrarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_add.png"))); // NOI18N
-        btnCadastrarProduto.setText(" Cadastrar novo produto");
-        btnCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarProdutoActionPerformed(evt);
-            }
-        });
-
         btnSair.setBackground(new java.awt.Color(61, 91, 132));
         btnSair.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
         btnSair.setForeground(new java.awt.Color(255, 255, 255));
@@ -212,35 +196,35 @@ public class TelaMenu extends javax.swing.JFrame {
         PanelCentralLayout.setHorizontalGroup(
             PanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelCentralLayout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
-                .addGroup(PanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnRalatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnFornecedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(PanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCadastrarFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(41, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCentralLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSair)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelCentralLayout.createSequentialGroup()
+                        .addContainerGap(167, Short.MAX_VALUE)
+                        .addGroup(PanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnProdutos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnFornecedores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRalatorio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCentralLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSair)
+                        .addGap(90, 90, 90)))
+                .addComponent(image_Logo)
+                .addContainerGap(328, Short.MAX_VALUE))
         );
         PanelCentralLayout.setVerticalGroup(
             PanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelCentralLayout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addGroup(PanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(154, Short.MAX_VALUE)
+                .addComponent(image_Logo)
+                .addContainerGap(154, Short.MAX_VALUE))
+            .addGroup(PanelCentralLayout.createSequentialGroup()
+                .addGap(176, 176, 176)
+                .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(PanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCadastrarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnFornecedores, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRalatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -250,10 +234,6 @@ public class TelaMenu extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         System.exit(0);
@@ -314,12 +294,11 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JPanel PanelEsquerdo;
     private javax.swing.JPanel PanelInferior;
     private javax.swing.JPanel PanelSuperior;
-    private javax.swing.JButton btnCadastrarFornecedor;
-    private javax.swing.JButton btnCadastrarProduto;
     private javax.swing.JButton btnFornecedores;
     private javax.swing.JButton btnProdutos;
     private javax.swing.JButton btnRalatorio;
     private javax.swing.JButton btnSair;
+    private javax.swing.JLabel image_Logo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblSaudacaoInicial;
     // End of variables declaration//GEN-END:variables

@@ -244,6 +244,11 @@ public class TelaFornecedores extends javax.swing.JFrame {
         btnCadastrarFornecedor.setMaximumSize(new java.awt.Dimension(190, 35));
         btnCadastrarFornecedor.setMinimumSize(new java.awt.Dimension(190, 35));
         btnCadastrarFornecedor.setPreferredSize(new java.awt.Dimension(190, 35));
+        btnCadastrarFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarFornecedorActionPerformed(evt);
+            }
+        });
 
         btnExcluirFornecedor.setBackground(new java.awt.Color(0, 0, 0));
         btnExcluirFornecedor.setForeground(new java.awt.Color(255, 255, 255));
@@ -315,6 +320,12 @@ public class TelaFornecedores extends javax.swing.JFrame {
         tm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnCadastrarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFornecedorActionPerformed
+        TelaCadastroDeFornecedores cf = new TelaCadastroDeFornecedores();
+        cf.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCadastrarFornecedorActionPerformed
 
     /**
      * @param args the command line arguments

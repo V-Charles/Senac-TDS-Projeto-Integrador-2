@@ -102,6 +102,8 @@ public class TelaFornecedores extends javax.swing.JFrame {
         btnExcluirFornecedor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(59, 93, 132));
 

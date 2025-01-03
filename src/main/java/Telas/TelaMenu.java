@@ -61,6 +61,8 @@ public class TelaMenu extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         PanelSuperior.setBackground(new java.awt.Color(61, 91, 132));
 

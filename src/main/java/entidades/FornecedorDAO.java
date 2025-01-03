@@ -24,7 +24,7 @@ public class FornecedorDAO {
                     + "AND f.ativo = true";
             
             Query consulta = em.createQuery(textoQuery);
-            consulta.setParameter("nomeFornecedor", filtroNome.isEmpty() ? null : "%" + filtroNome + "&");
+            consulta.setParameter("nomeFornecedor", filtroNome.isEmpty() ? null : "%" + filtroNome + "%");
             fornecedores = consulta.getResultList();
         } finally {
             JPAUtil.closeEntityManager();

@@ -209,6 +209,11 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
         btnMenu.setMaximumSize(new java.awt.Dimension(120, 35));
         btnMenu.setMinimumSize(new java.awt.Dimension(120, 35));
         btnMenu.setPreferredSize(new java.awt.Dimension(120, 35));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
 
         btnVoltar.setBackground(new java.awt.Color(59, 93, 132));
         btnVoltar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
@@ -218,6 +223,11 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
         btnVoltar.setMaximumSize(new java.awt.Dimension(120, 35));
         btnVoltar.setMinimumSize(new java.awt.Dimension(120, 35));
         btnVoltar.setPreferredSize(new java.awt.Dimension(120, 35));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
 
         txtEmailDoFornecedor.setBackground(new java.awt.Color(255, 255, 255));
         txtEmailDoFornecedor.setForeground(new java.awt.Color(0, 0, 0));
@@ -346,6 +356,18 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
         txtEmailDoFornecedor.setText("");
         ftxtTelefoneDoFornecedor.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        TelaMenu tm = new TelaMenu();
+        tm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        TelaFornecedores tf = new TelaFornecedores();
+        tf.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments

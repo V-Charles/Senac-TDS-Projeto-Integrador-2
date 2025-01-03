@@ -195,6 +195,11 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
         btnCancelar.setMaximumSize(new java.awt.Dimension(120, 35));
         btnCancelar.setMinimumSize(new java.awt.Dimension(120, 35));
         btnCancelar.setPreferredSize(new java.awt.Dimension(120, 35));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnMenu.setBackground(new java.awt.Color(59, 93, 132));
         btnMenu.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
@@ -334,6 +339,13 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
     private void txtNomeDoFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeDoFornecedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeDoFornecedorActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        txtNomeDoFornecedor.setText("");
+        ftxtCNPJDoFornecedor.setText("");
+        txtEmailDoFornecedor.setText("");
+        ftxtTelefoneDoFornecedor.setText("");
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments

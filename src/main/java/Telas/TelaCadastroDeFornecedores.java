@@ -5,6 +5,7 @@
 package Telas;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -186,6 +187,11 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
         btnSalvar.setMaximumSize(new java.awt.Dimension(120, 35));
         btnSalvar.setMinimumSize(new java.awt.Dimension(120, 35));
         btnSalvar.setPreferredSize(new java.awt.Dimension(120, 35));
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setBackground(new java.awt.Color(59, 93, 132));
         btnCancelar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
@@ -368,6 +374,25 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
         tf.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        try {
+            if(!txtNomeDoFornecedor.getText().isEmpty() && !txtEmailDoFornecedor.getText().isEmpty()){
+                if(!ftxtCNPJDoFornecedor.getText().replaceAll("[^0-9]", "").isEmpty() && !ftxtTelefoneDoFornecedor.getText().replaceAll("[^0-9]", "").isEmpty()){
+                    
+                } else {
+                    JOptionPane.showMessageDialog(this, "É necessário preencher todos os campos!\n"
+                            + "Por favor, tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "É necessário preencher todos os campos!\n"
+                        + "Por favor, tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Não foi possível efetuar o cadastro!\n"
+                    + "Por favor, tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -19,19 +19,32 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
      */
     public TelaCadastroDeFornecedores() {
         initComponents();
+        tituloDaTela();
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    
+    private void tituloDaTela(){
+        String msg;
+        if(fornecedorEdicao == null){
+            msg = "Cadastro de fornecedor";
+        } else {
+            msg = "Edição de fornecedor";
+        }
+        lblTituloDaTela.setText(msg);
     }
     
     private Fornecedor fornecedorEdicao = null;
     
     public void preencheEdicao(Fornecedor f){
+        fornecedorEdicao = f;
+        
         txtNomeDoFornecedor.setText(f.getNomeFornecedor());
         txtEmailDoFornecedor.setText(f.getEmail());
         ftxtCNPJDoFornecedor.setText(String.valueOf(f.getCnpj()));
         ftxtTelefoneDoFornecedor.setText(String.valueOf(f.getTelefone()));
         
-        fornecedorEdicao = f;
+        tituloDaTela();
     }
 
     /**
@@ -78,7 +91,6 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
 
         lblTituloDaTela.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
         lblTituloDaTela.setForeground(new java.awt.Color(0, 0, 0));
-        lblTituloDaTela.setText("Título da Tela");
 
         javax.swing.GroupLayout panelTopLayout = new javax.swing.GroupLayout(panelTop);
         panelTop.setLayout(panelTopLayout);
@@ -87,7 +99,7 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
             .addGroup(panelTopLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTituloDaTela)
-                .addContainerGap(874, Short.MAX_VALUE))
+                .addContainerGap(1207, Short.MAX_VALUE))
         );
         panelTopLayout.setVerticalGroup(
             panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +121,7 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
         );
         panelLeftLayout.setVerticalGroup(
             panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
+            .addGap(0, 520, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelLeft, java.awt.BorderLayout.LINE_END);
@@ -147,7 +159,7 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
         );
         panelRightLayout.setVerticalGroup(
             panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
+            .addGap(0, 520, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelRight, java.awt.BorderLayout.LINE_START);
@@ -321,17 +333,17 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
             .addGroup(panelCenterLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNomeDoFornecedor)
                     .addComponent(txtNomeDoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 5, Short.MAX_VALUE)
+                .addGap(0, 18, Short.MAX_VALUE)
                 .addComponent(line1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCNPJDoFornecedor)
                     .addComponent(ftxtCNPJDoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(line2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -345,13 +357,13 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
                     .addComponent(ftxtTelefoneDoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(line4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         getContentPane().add(panelCenter, java.awt.BorderLayout.CENTER);

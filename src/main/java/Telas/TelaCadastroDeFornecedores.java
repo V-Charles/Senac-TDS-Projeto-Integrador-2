@@ -4,6 +4,7 @@
  */
 package Telas;
 
+import entidades.Fornecedor;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -20,6 +21,17 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
         initComponents();
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    
+    private Fornecedor fornecedorEdicao = null;
+    
+    public void preencheEdicao(Fornecedor f){
+        txtNomeDoFornecedor.setText(f.getNomeFornecedor());
+        txtEmailDoFornecedor.setText(f.getEmail());
+        ftxtCNPJDoFornecedor.setText(String.valueOf(f.getCnpj()));
+        ftxtTelefoneDoFornecedor.setText(String.valueOf(f.getTelefone()));
+        
+        fornecedorEdicao = f;
     }
 
     /**

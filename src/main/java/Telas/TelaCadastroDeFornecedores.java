@@ -361,12 +361,27 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
         ftxtCNPJDoFornecedor.setText("");
         txtEmailDoFornecedor.setText("");
         ftxtTelefoneDoFornecedor.setText("");
-    }//GEN-LAST:event_btnCancelarActionPerformed
 
+    }//GEN-LAST:event_btnCancelarActionPerformed
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
-        TelaMenu tm = new TelaMenu();
-        tm.setVisible(true);
-        this.dispose();
+        String campoNome = txtNomeDoFornecedor.getText();
+        String campoEmail = txtEmailDoFornecedor.getText();
+        String campoCnpj = ftxtCNPJDoFornecedor.getText().replaceAll("[^0-9]", "");
+        String campoTelefone = ftxtTelefoneDoFornecedor.getText().replaceAll("[^0-9]", "");
+        
+        if(!campoNome.isEmpty() || !campoEmail.isEmpty() || !campoCnpj.isEmpty() || !campoTelefone.isEmpty()){
+            int resp = JOptionPane.showConfirmDialog(this, "Os dados inseridos serão perdidos!\n"
+                    + "Deseja voltar ao menu mesmo assim?", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if(resp == JOptionPane.YES_OPTION){
+                TelaMenu tm = new TelaMenu();
+                tm.setVisible(true);
+                this.dispose();
+            }
+        } else {
+            TelaMenu tm = new TelaMenu();
+            tm.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

@@ -8,6 +8,7 @@ import entidades.FornecedorDAO;
 import entidades.Fornecedor;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -209,6 +210,11 @@ public class TelaFornecedores extends javax.swing.JFrame {
         btnEditarFornecedor.setMaximumSize(new java.awt.Dimension(190, 35));
         btnEditarFornecedor.setMinimumSize(new java.awt.Dimension(190, 35));
         btnEditarFornecedor.setPreferredSize(new java.awt.Dimension(190, 35));
+        btnEditarFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarFornecedorActionPerformed(evt);
+            }
+        });
 
         lblOrientacaoDeFiltro.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 10)); // NOI18N
         lblOrientacaoDeFiltro.setForeground(new java.awt.Color(0, 0, 0));
@@ -326,6 +332,20 @@ public class TelaFornecedores extends javax.swing.JFrame {
         cf.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCadastrarFornecedorActionPerformed
+
+    private void btnEditarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarFornecedorActionPerformed
+        try {
+            TelaCadastroDeFornecedores cadastro = new TelaCadastroDeFornecedores();
+            if(tblFornecedores.getSelectedRow() >= 0){
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "É necessário selecionar um fornecedor para edita-lo!", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocorreu um erro ao tentar editar os dados do fornecedor selecionado.\n"
+                    + "Por favor, tente novamente!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEditarFornecedorActionPerformed
 
     /**
      * @param args the command line arguments

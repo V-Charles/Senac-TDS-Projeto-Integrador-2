@@ -248,6 +248,11 @@ public class TelaProdutos extends javax.swing.JFrame {
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_back.png"))); // NOI18N
         btnVoltar.setText(" Voltar");
         btnVoltar.setPreferredSize(new java.awt.Dimension(175, 35));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCenterLayout = new javax.swing.GroupLayout(panelCenter);
         panelCenter.setLayout(panelCenterLayout);
@@ -308,6 +313,12 @@ public class TelaProdutos extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        TelaMenu tm = new TelaMenu();
+        tm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments

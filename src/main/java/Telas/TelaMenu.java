@@ -240,7 +240,9 @@ public class TelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
-        // TODO add your handling code here:
+        TelaProdutos tp = new TelaProdutos();
+        tp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnProdutosActionPerformed
 
     private void btnRalatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRalatorioActionPerformed

@@ -9,6 +9,7 @@ import entidades.ProdutoDAO;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -230,6 +231,11 @@ public class TelaProdutos extends javax.swing.JFrame {
         btnRealizarMovimentacao.setForeground(new java.awt.Color(255, 255, 255));
         btnRealizarMovimentacao.setText("Realizar movimentação");
         btnRealizarMovimentacao.setPreferredSize(new java.awt.Dimension(175, 35));
+        btnRealizarMovimentacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRealizarMovimentacaoActionPerformed(evt);
+            }
+        });
 
         btnEditarProduto.setBackground(new java.awt.Color(0, 0, 0));
         btnEditarProduto.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
@@ -319,6 +325,20 @@ public class TelaProdutos extends javax.swing.JFrame {
         tm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnRealizarMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarMovimentacaoActionPerformed
+        try {
+            if(tblProdutos.getSelectedRow() >= 0){
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "É necessário selecionar um produto para realizar a movimentação!\n"
+                        + "Por favor, tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Surgiu um erro inesperado.\n"
+                    + "Por favor tente novamente", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRealizarMovimentacaoActionPerformed
 
     /**
      * @param args the command line arguments

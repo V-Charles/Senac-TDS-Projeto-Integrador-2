@@ -242,6 +242,11 @@ public class TelaProdutos extends javax.swing.JFrame {
         btnEditarProduto.setForeground(new java.awt.Color(255, 255, 255));
         btnEditarProduto.setText("Editar produto");
         btnEditarProduto.setPreferredSize(new java.awt.Dimension(175, 35));
+        btnEditarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarProdutoActionPerformed(evt);
+            }
+        });
 
         btnCadastrarProduto.setBackground(new java.awt.Color(0, 0, 0));
         btnCadastrarProduto.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
@@ -339,6 +344,20 @@ public class TelaProdutos extends javax.swing.JFrame {
                     + "Por favor tente novamente", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnRealizarMovimentacaoActionPerformed
+
+    private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
+        try {
+            if(tblProdutos.getSelectedRow() >=0){
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "É necessário selecionar um produto para editá-lo!\n"
+                        + "Por favor, tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Surgiu um erro inesperado!\n"
+                    + "Por favor, tente novamente", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEditarProdutoActionPerformed
 
     /**
      * @param args the command line arguments

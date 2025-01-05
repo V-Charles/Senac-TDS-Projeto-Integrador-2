@@ -365,7 +365,11 @@ public class TelaFornecedores extends javax.swing.JFrame {
                 String id = (String)tblFornecedores.getValueAt(tblFornecedores.getSelectedRow(), 0);
                 int resp = JOptionPane.showConfirmDialog(this, "Deseja excluir o fornecedor de ID: " + id + "?", "ATENÇÃO!", JOptionPane.WARNING_MESSAGE);
                 if(resp == 0){
-                    
+                    FornecedorDAO fornecedorDao = new FornecedorDAO();
+                    Fornecedor fornecedorSelecionado = fornecedorDao.obter(Integer.parseInt(id));
+                    fornecedorDao.excluir(fornecedorSelecionado);
+                    preencherTabela(fornecedorDao.listar(""));
+                    JOptionPane.showMessageDialog(this, "Fornecedor excluído com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "É necessário selecionar um fornecedor!", "Erro", JOptionPane.ERROR_MESSAGE);

@@ -15,6 +15,21 @@ import utilitarios.JPAUtil;
  */
 public class FornecedorDAO {
     
+    public void cadastrar(Fornecedor f){
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(f);
+            em.getTransaction().commit();
+            
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            throw e;
+        } finally {
+            JPAUtil.closeEntityManager();
+        }
+    }
+    
     public Fornecedor obter(int id){
         EntityManager em = JPAUtil.getEntityManager();
         try {

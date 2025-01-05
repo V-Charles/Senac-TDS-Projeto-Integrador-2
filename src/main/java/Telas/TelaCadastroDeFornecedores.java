@@ -5,6 +5,7 @@
 package Telas;
 
 import entidades.Fornecedor;
+import entidades.FornecedorDAO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -430,10 +431,32 @@ public class TelaCadastroDeFornecedores extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        Fornecedor novoFornecedor = new Fornecedor();
+        if(fornecedorEdicao != null){
+            novoFornecedor = fornecedorEdicao;
+        }
         try {
             if(!txtNomeDoFornecedor.getText().isEmpty() && !txtEmailDoFornecedor.getText().isEmpty()){
                 if(!ftxtCNPJDoFornecedor.getText().replaceAll("[^0-9]", "").isEmpty() && !ftxtTelefoneDoFornecedor.getText().replaceAll("[^0-9]", "").isEmpty()){
+                    novoFornecedor.setNomeFornecedor(txtNomeDoFornecedor.getText());
+                    novoFornecedor.setEmail(txtEmailDoFornecedor.getText());
+                    novoFornecedor.setCnpj(ftxtCNPJDoFornecedor.getText());
+                    novoFornecedor.setTelefone(ftxtTelefoneDoFornecedor.getText());
                     
+                    FornecedorDAO fornecedorDao = new FornecedorDAO();
+                    if(fornecedorEdicao == null){
+                        fornecedorDao.cadastrar(novoFornecedor);
+                        JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        TelaFornecedores tf = new TelaFornecedores();
+                        tf.setVisible(true);
+                        this.dispose();
+                    } else {
+                        fornecedorDao.atualizar(novoFornecedor);
+                        JOptionPane.showMessageDialog(this, "Edição realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        TelaFornecedores tf = new TelaFornecedores();
+                        tf.setVisible(true);
+                        this.dispose();
+                    }
                 } else {
                     JOptionPane.showMessageDialog(this, "É necessário preencher todos os campos!\n"
                             + "Por favor, tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);

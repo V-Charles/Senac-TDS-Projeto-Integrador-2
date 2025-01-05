@@ -9,6 +9,8 @@ import entidades.ProdutoDAO;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,6 +26,31 @@ public class TelaProdutos extends javax.swing.JFrame {
         initComponents();
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        txtBuscaPorNome.getDocument().addDocumentListener(new DocumentListener(){
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filtrarProdutos();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filtrarProdutos();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filtrarProdutos();
+            }
+            
+            private void filtrarProdutos(){
+                ProdutoDAO produtoDao = new ProdutoDAO();
+                String filtroNome = txtBuscaPorNome.getText().trim();
+                List<Produto> produtos = produtoDao.listar(filtroNome);
+                preencheTabela(produtos);
+            }
+            
+        });
         
         ProdutoDAO produtoDao = new ProdutoDAO();
         List<Produto> produtos = produtoDao.listar("");

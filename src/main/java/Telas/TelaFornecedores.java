@@ -262,6 +262,11 @@ public class TelaFornecedores extends javax.swing.JFrame {
         btnExcluirFornecedor.setMaximumSize(new java.awt.Dimension(190, 35));
         btnExcluirFornecedor.setMinimumSize(new java.awt.Dimension(190, 35));
         btnExcluirFornecedor.setPreferredSize(new java.awt.Dimension(190, 35));
+        btnExcluirFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirFornecedorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -346,6 +351,23 @@ public class TelaFornecedores extends javax.swing.JFrame {
                     + "Por favor, tente novamente!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEditarFornecedorActionPerformed
+
+    private void btnExcluirFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFornecedorActionPerformed
+        try {
+            if(tblFornecedores.getSelectedRow() >= 0){
+                String id = (String)tblFornecedores.getValueAt(tblFornecedores.getSelectedRow(), 0);
+                int resp = JOptionPane.showConfirmDialog(this, "Deseja excluir o fornecedor de ID: " + id + "?", "ATENÇÃO!", JOptionPane.WARNING_MESSAGE);
+                if(resp == 0){
+                    
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "É necessário selecionar um fornecedor!", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Não foi possível excluir o fornecedor selecionado.\n"
+                    + "Por favor, tente novamente!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnExcluirFornecedorActionPerformed
 
     /**
      * @param args the command line arguments

@@ -342,7 +342,14 @@ public class TelaFornecedores extends javax.swing.JFrame {
         try {
             TelaCadastroDeFornecedores cadastro = new TelaCadastroDeFornecedores();
             if(tblFornecedores.getSelectedRow() >= 0){
+                String id = (String)tblFornecedores.getValueAt(tblFornecedores.getSelectedRow(), 0);
                 
+                FornecedorDAO fornecedorDao = new FornecedorDAO();
+                Fornecedor fornecedorSelecionado = fornecedorDao.obter(Integer.parseInt(id));
+                
+                cadastro.preencheEdicao(fornecedorSelecionado);
+                cadastro.setVisible(true);
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "É necessário selecionar um fornecedor para edita-lo!", "Erro", JOptionPane.ERROR_MESSAGE);
             }

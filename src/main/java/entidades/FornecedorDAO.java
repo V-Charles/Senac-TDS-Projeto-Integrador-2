@@ -30,6 +30,19 @@ public class FornecedorDAO {
         }
     }
     
+    public void atualizar(Fornecedor f){
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(f);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            JPAUtil.closeEntityManager();
+        }
+    }
+    
     public Fornecedor obter(int id){
         EntityManager em = JPAUtil.getEntityManager();
         try {

@@ -15,6 +15,15 @@ import utilitarios.JPAUtil;
  */
 public class FornecedorDAO {
     
+    public Fornecedor obter(int id){
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return em.find(Fornecedor.class, id);
+        } finally {
+            JPAUtil.closeEntityManager();
+        }
+    }
+    
     public List<Fornecedor> listar(String filtroNome){
         EntityManager em = JPAUtil.getEntityManager();
         List fornecedores = null;

@@ -4,7 +4,12 @@
  */
 package Telas;
 
+import entidades.Produto;
+import entidades.ProdutoDAO;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +24,31 @@ public class TelaProdutos extends javax.swing.JFrame {
         initComponents();
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        ProdutoDAO produtoDao = new ProdutoDAO();
+        List<Produto> produtos = produtoDao.listar("");
+        preencheTabela(produtos);
+    }
+    
+    public void preencheTabela(List<Produto> produtos){
+        String colunas[] = {"ID:", "Nome do produto:", "Categoria", "Quantidade total:", "Data do registro:", "Fornecedor:"};
+        String dados[][] = new String[produtos.size()][colunas.length];
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/y");
+        int i = 0;
+        for(Produto p : produtos){
+            dados[i] = new String[]{
+                String.valueOf(p.getId()),
+                p.getNomeProduto(),
+                p.getCategoria(),
+                p.getQuantidade() != null ? String.valueOf(p.getQuantidade()) : "Sem entrada",
+                p.getData() != null ? p.getData().format(formatter) : "Data não disponível",
+                p.getFornecedor().getNomeFornecedor()
+            };
+            i++;
+        }
+        DefaultTableModel model = new DefaultTableModel(dados, colunas);
+        tblProdutos.setModel(model);
     }
 
     /**

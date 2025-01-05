@@ -26,7 +26,7 @@ public class Produto {
     private int id;
     
     private String nomeProduto;
-    private int quantidade;
+    private Integer quantidade;
     private String categoria;
     
     @Column(name = "data")
@@ -39,7 +39,7 @@ public class Produto {
     public Produto(){
     }
 
-    public Produto(int id, String nomeProduto, int quantidade, String categoria, LocalDate data, Fornecedor fornecedor) {
+    public Produto(int id, String nomeProduto, Integer quantidade, String categoria, LocalDate data, Fornecedor fornecedor) {
         this.id = id;
         this.nomeProduto = nomeProduto;
         this.quantidade = quantidade;
@@ -67,11 +67,11 @@ public class Produto {
         this.nomeProduto = nomeProduto;
     }
 
-    public int getQuantidade() {
+    public Integer getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
 

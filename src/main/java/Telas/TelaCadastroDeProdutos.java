@@ -5,6 +5,7 @@
 package Telas;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -192,6 +193,11 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_back.png"))); // NOI18N
         btnVoltar.setText(" Voltar");
         btnVoltar.setPreferredSize(new java.awt.Dimension(120, 35));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
 
         lblFornecedor.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         lblFornecedor.setForeground(new java.awt.Color(0, 0, 0));
@@ -284,6 +290,23 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        String campoNome = txtNomeDoProduto.getText();
+        if(!campoNome.isEmpty()){
+            int resp = JOptionPane.showConfirmDialog(null, "Os dados inseridos seão perdidos!\nVoltar mesmo assim?", 
+                                                    "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if(resp == JOptionPane.YES_OPTION){
+                TelaProdutos tp = new TelaProdutos();
+                tp.setVisible(true);
+                this.dispose();
+            }
+        } else {
+            TelaProdutos tp = new TelaProdutos();
+            tp.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments

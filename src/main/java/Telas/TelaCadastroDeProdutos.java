@@ -298,7 +298,8 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         String campoNome = txtNomeDoProduto.getText();
-        if(!campoNome.isEmpty()){
+        String campoCategoria = txtCategoriaDoProduto.getText();
+        if(!campoNome.isEmpty() || !campoCategoria.isEmpty()){
             int resp = JOptionPane.showConfirmDialog(null, "Os dados inseridos seão perdidos!\nVoltar mesmo assim?", 
                                                     "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             if(resp == JOptionPane.YES_OPTION){

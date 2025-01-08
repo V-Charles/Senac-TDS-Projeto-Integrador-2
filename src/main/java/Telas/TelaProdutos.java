@@ -253,6 +253,11 @@ public class TelaProdutos extends javax.swing.JFrame {
         btnCadastrarProduto.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrarProduto.setText("Cadastrar novo produto");
         btnCadastrarProduto.setPreferredSize(new java.awt.Dimension(175, 35));
+        btnCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarProdutoActionPerformed(evt);
+            }
+        });
 
         btnVoltar.setBackground(new java.awt.Color(59, 93, 132));
         btnVoltar.setForeground(new java.awt.Color(255, 255, 255));
@@ -358,6 +363,12 @@ public class TelaProdutos extends javax.swing.JFrame {
                     + "Por favor, tente novamente", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEditarProdutoActionPerformed
+
+    private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
+        TelaCadastroDeProdutos tp = new TelaCadastroDeProdutos();
+        tp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
     /**
      * @param args the command line arguments

@@ -172,6 +172,11 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_cancel.png"))); // NOI18N
         btnCancelar.setText(" Cancelar");
         btnCancelar.setPreferredSize(new java.awt.Dimension(120, 35));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setBackground(new java.awt.Color(59, 93, 132));
         btnSalvar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
@@ -307,6 +312,11 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        txtNomeDoProduto.setText("");
+        txtCategoriaDoProduto.setText("");
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments

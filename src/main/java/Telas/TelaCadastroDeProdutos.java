@@ -191,6 +191,11 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_menu.png"))); // NOI18N
         btnMenu.setText(" Menu");
         btnMenu.setPreferredSize(new java.awt.Dimension(120, 35));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
 
         btnVoltar.setBackground(new java.awt.Color(59, 93, 132));
         btnVoltar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
@@ -318,6 +323,24 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
         txtNomeDoProduto.setText("");
         txtCategoriaDoProduto.setText("");
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        String campoNome = txtNomeDoProduto.getText();
+        String campoCategoria = txtCategoriaDoProduto.getText();
+        if(!campoNome.isEmpty() || !campoCategoria.isEmpty()){
+            int resp = JOptionPane.showConfirmDialog(null, "Os dados inseridos serão perdidos!\nVoltar ao menu mesmo assim?",
+                                                     "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if(resp == JOptionPane.YES_OPTION){
+                TelaMenu tm = new TelaMenu();
+                tm.setVisible(true);
+                this.dispose();
+            }
+        } else {
+            TelaMenu tm = new TelaMenu();
+            tm.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnMenuActionPerformed
 
     /**
      * @param args the command line arguments

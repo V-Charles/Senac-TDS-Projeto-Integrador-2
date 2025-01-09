@@ -6,6 +6,7 @@ package Telas;
 
 import entidades.Fornecedor;
 import entidades.FornecedorDAO;
+import entidades.Produto;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -24,6 +25,15 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
         comboFornecedor();
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    
+    private Produto produtoEdicao = null;
+    
+    public void preencheEdicao(Produto p){
+        txtNomeDoProduto.setText(p.getNomeProduto());
+        txtCategoriaDoProduto.setText(p.getCategoria());
+        
+        produtoEdicao = p;
     }
     
     private void comboFornecedor(){

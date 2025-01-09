@@ -30,6 +30,15 @@ public class ProdutoDAO {
         }
     }
     
+    public Produto obter(int id){
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return em.find(Produto.class, id);
+        } finally {
+            JPAUtil.closeEntityManager();
+        }
+    }
+    
     public List<Produto> listar(String filtroNome){
         EntityManager em = JPAUtil.getEntityManager();
         List produtos = null;

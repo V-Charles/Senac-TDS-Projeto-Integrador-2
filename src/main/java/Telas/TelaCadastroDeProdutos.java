@@ -4,6 +4,9 @@
  */
 package Telas;
 
+import entidades.Fornecedor;
+import entidades.FornecedorDAO;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -18,8 +21,17 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
      */
     public TelaCadastroDeProdutos() {
         initComponents();
+        comboFornecedor();
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    
+    private void comboFornecedor(){
+        FornecedorDAO fornecedorDao = new FornecedorDAO();
+        List<Fornecedor> fornecedores = fornecedorDao.listar("");
+        for(Fornecedor f : fornecedores){
+            cbmFornecedor.addItem(f.getNomeFornecedor());
+        }
     }
 
     /**
@@ -221,7 +233,6 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
         cbmFornecedor.setBackground(new java.awt.Color(255, 255, 255));
         cbmFornecedor.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         cbmFornecedor.setForeground(new java.awt.Color(0, 0, 0));
-        cbmFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbmFornecedor.setBorder(null);
 
         javax.swing.GroupLayout panelCenterLayout = new javax.swing.GroupLayout(panelCenter);

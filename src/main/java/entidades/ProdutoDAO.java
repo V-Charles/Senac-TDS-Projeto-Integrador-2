@@ -15,6 +15,21 @@ import utilitarios.JPAUtil;
  */
 public class ProdutoDAO {
     
+    public void cadastrar(Produto p){
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(p);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Erro no método cadastrar da classe ProdutoDAO\n" + e.getMessage());
+            em.getTransaction().rollback();
+            throw e;
+        } finally {
+            JPAUtil.closeEntityManager();
+        }
+    }
+    
     public List<Produto> listar(String filtroNome){
         EntityManager em = JPAUtil.getEntityManager();
         List produtos = null;

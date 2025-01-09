@@ -184,6 +184,11 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_save.png"))); // NOI18N
         btnSalvar.setText(" Salvar");
         btnSalvar.setPreferredSize(new java.awt.Dimension(120, 35));
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnMenu.setBackground(new java.awt.Color(59, 93, 132));
         btnMenu.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
@@ -341,6 +346,20 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        try {
+            if(!txtNomeDoProduto.getText().isEmpty() && !txtCategoriaDoProduto.getText().isEmpty()){
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "É necessário que todos os campos estejam preenchidos!\n"
+                        + "Por favor, tente novamente.", "Erro", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Não foi possível concluir o cadastro!\n"
+                    + "Por favor, tente novamente.", "Erro", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments

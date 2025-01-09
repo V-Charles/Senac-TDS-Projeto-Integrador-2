@@ -353,7 +353,15 @@ public class TelaProdutos extends javax.swing.JFrame {
     private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
         try {
             if(tblProdutos.getSelectedRow() >=0){
+                String id = (String)tblProdutos.getValueAt(tblProdutos.getSelectedRow(), 0);
                 
+                ProdutoDAO produtoDao = new ProdutoDAO();
+                Produto produtoSelecionado = produtoDao.obter(Integer.parseInt(id));
+                
+                TelaCadastroDeProdutos tcp = new TelaCadastroDeProdutos();
+                tcp.preencheEdicao(produtoSelecionado);
+                tcp.setVisible(true);
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "É necessário selecionar um produto para editá-lo!\n"
                         + "Por favor, tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);

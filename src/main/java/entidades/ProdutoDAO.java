@@ -39,6 +39,19 @@ public class ProdutoDAO {
         }
     }
     
+    public void atualizar(Produto p){
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(p);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            JPAUtil.closeEntityManager();
+        }
+    }
+    
     public List<Produto> listar(String filtroNome){
         EntityManager em = JPAUtil.getEntityManager();
         List produtos = null;

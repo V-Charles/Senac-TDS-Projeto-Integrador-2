@@ -5,8 +5,10 @@
 package Telas;
 
 import entidades.Produto;
+import entidades.TipoMovimentacao;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 
 /**
@@ -20,8 +22,13 @@ public class TelaRegistrarMovimentacao extends javax.swing.JFrame {
      */
     public TelaRegistrarMovimentacao() {
         initComponents();
+        comboMov();
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    
+    private void comboMov(){
+        cmbTipoMovimentacao.setModel(new DefaultComboBoxModel(TipoMovimentacao.values()));
     }
     
     private Produto produtoParaMov = null;

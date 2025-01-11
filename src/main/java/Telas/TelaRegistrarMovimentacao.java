@@ -4,6 +4,9 @@
  */
 package Telas;
 
+import entidades.Produto;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
 
 /**
@@ -19,6 +22,22 @@ public class TelaRegistrarMovimentacao extends javax.swing.JFrame {
         initComponents();
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    
+    private Produto produtoParaMov = null;
+    
+    public void preencheProduto(Produto p){
+        txtIdProduto.setText(String.valueOf(p.getId()));
+        txtNomeDoProduto.setText(p.getNomeProduto());
+        txtCategoriaDoProduto.setText(p.getCategoria());
+        txtFornecedorDoProduto.setText(String.valueOf(p.getFornecedor()));
+        
+        LocalDate diaMov = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/y");
+        String dataFormatafa = diaMov.format(formatter);
+        ftxtDataMovimentacao.setText(dataFormatafa);
+        
+        produtoParaMov = p;
     }
 
     /**

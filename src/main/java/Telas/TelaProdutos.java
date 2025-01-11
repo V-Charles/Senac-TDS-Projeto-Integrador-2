@@ -338,8 +338,14 @@ public class TelaProdutos extends javax.swing.JFrame {
 
     private void btnRealizarMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarMovimentacaoActionPerformed
         try {
+            TelaRegistrarMovimentacao cadastroMov = new TelaRegistrarMovimentacao();
             if(tblProdutos.getSelectedRow() >= 0){
-                
+                String id = (String)tblProdutos.getValueAt(tblProdutos.getSelectedRow(), 0);
+                ProdutoDAO produtoDao = new ProdutoDAO();
+                Produto produtoSelecionado = produtoDao.obter(Integer.parseInt(id));
+                cadastroMov.preencheProduto(produtoSelecionado);
+                cadastroMov.setVisible(true);
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "É necessário selecionar um produto para realizar a movimentação!\n"
                         + "Por favor, tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);

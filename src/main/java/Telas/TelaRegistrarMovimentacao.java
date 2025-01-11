@@ -266,6 +266,11 @@ public class TelaRegistrarMovimentacao extends javax.swing.JFrame {
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_cancel.png"))); // NOI18N
         btnCancelar.setText(" Cancelar");
         btnCancelar.setPreferredSize(new java.awt.Dimension(120, 35));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCenterLayout = new javax.swing.GroupLayout(panelCenter);
         panelCenter.setLayout(panelCenterLayout);
@@ -377,6 +382,19 @@ public class TelaRegistrarMovimentacao extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        txtIdProduto.setText("");
+        txtNomeDoProduto.setText("");
+        txtCategoriaDoProduto.setText("");
+        txtFornecedorDoProduto.setText("");
+        txtQuantidade.setText("");
+        ftxtDataMovimentacao.setText("");
+        
+        TelaProdutos tp = new TelaProdutos();
+        tp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments

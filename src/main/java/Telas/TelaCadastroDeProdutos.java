@@ -25,17 +25,30 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
     public TelaCadastroDeProdutos() {
         initComponents();
         comboFornecedor();
+        tituloDaTela();
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    
+    private void tituloDaTela(){
+        String msg;
+        if(produtoEdicao == null){
+            msg = "Cadastro de produto";
+        }else{
+            msg = "Edição de produto";
+        }
+        lblTituloDaTela.setText(msg);
     }
     
     private Produto produtoEdicao = null;
     
     public void preencheEdicao(Produto p){
+        produtoEdicao = p;
+        
         txtNomeDoProduto.setText(p.getNomeProduto());
         txtCategoriaDoProduto.setText(p.getCategoria());
         
-        produtoEdicao = p;
+        tituloDaTela();
     }
     
     private void comboFornecedor(){
@@ -87,7 +100,6 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
 
         lblTituloDaTela.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 48)); // NOI18N
         lblTituloDaTela.setForeground(new java.awt.Color(0, 0, 0));
-        lblTituloDaTela.setText("Título da tela");
 
         javax.swing.GroupLayout panelTopLayout = new javax.swing.GroupLayout(panelTop);
         panelTop.setLayout(panelTopLayout);
@@ -96,14 +108,14 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
             .addGroup(panelTopLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTituloDaTela)
-                .addContainerGap(972, Short.MAX_VALUE))
+                .addContainerGap(1274, Short.MAX_VALUE))
         );
         panelTopLayout.setVerticalGroup(
             panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTopLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTituloDaTela)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         getContentPane().add(panelTop, java.awt.BorderLayout.PAGE_START);

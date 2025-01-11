@@ -7,6 +7,8 @@ package Telas;
 import entidades.Fornecedor;
 import entidades.FornecedorDAO;
 import entidades.Produto;
+import entidades.ProdutoDAO;
+import java.time.LocalDate;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -38,9 +40,10 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
     
     private void comboFornecedor(){
         FornecedorDAO fornecedorDao = new FornecedorDAO();
-        List<Fornecedor> fornecedores = fornecedorDao.listar("");
+        List<Fornecedor> fornecedores = fornecedorDao.listarTodos();
+        
         for(Fornecedor f : fornecedores){
-            cbmFornecedor.addItem(f.getNomeFornecedor());
+            cmbFornecedor.addItem(f);
         }
     }
 
@@ -73,7 +76,7 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
         btnMenu = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
         lblFornecedor = new javax.swing.JLabel();
-        cbmFornecedor = new javax.swing.JComboBox<>();
+        cmbFornecedor = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -240,10 +243,10 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
         lblFornecedor.setForeground(new java.awt.Color(0, 0, 0));
         lblFornecedor.setText("Fornecedor:");
 
-        cbmFornecedor.setBackground(new java.awt.Color(255, 255, 255));
-        cbmFornecedor.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
-        cbmFornecedor.setForeground(new java.awt.Color(0, 0, 0));
-        cbmFornecedor.setBorder(null);
+        cmbFornecedor.setBackground(new java.awt.Color(255, 255, 255));
+        cmbFornecedor.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
+        cmbFornecedor.setForeground(new java.awt.Color(0, 0, 0));
+        cmbFornecedor.setBorder(null);
 
         javax.swing.GroupLayout panelCenterLayout = new javax.swing.GroupLayout(panelCenter);
         panelCenter.setLayout(panelCenterLayout);
@@ -279,7 +282,7 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCenterLayout.createSequentialGroup()
                                 .addComponent(lblFornecedor)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbmFornecedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cmbFornecedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(138, 138, 138)
@@ -309,7 +312,7 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblFornecedor)
-                    .addComponent(cbmFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
@@ -369,14 +372,40 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        Produto novoProduto = new Produto();
+        if(produtoEdicao != null){
+            novoProduto = produtoEdicao;
+        }
         try {
             if(!txtNomeDoProduto.getText().isEmpty() && !txtCategoriaDoProduto.getText().isEmpty()){
+                novoProduto.setNomeProduto(txtNomeDoProduto.getText());
+                novoProduto.setCategoria(txtCategoriaDoProduto.getText());
+                Fornecedor fornecedorSelecionado = (Fornecedor) cmbFornecedor.getSelectedItem();
+                novoProduto.setFornecedor(fornecedorSelecionado);
                 
+                novoProduto.setData(LocalDate.now());
+                ProdutoDAO produtoDao = new ProdutoDAO();
+                if(produtoEdicao == null){
+                    produtoDao.cadastrar(novoProduto);
+                    JOptionPane.showMessageDialog(this, "Cadastro concluído com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    TelaProdutos tp = new TelaProdutos();
+                    tp.setVisible(true);
+                    this.dispose();
+                } else {
+                    produtoDao.atualizar(novoProduto);
+                    JOptionPane.showMessageDialog(this, "Edição concluída com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    TelaProdutos tp = new TelaProdutos();
+                    tp.setVisible(true);
+                    this.dispose();
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "É necessário que todos os campos estejam preenchidos!\n"
                         + "Por favor, tente novamente.", "Erro", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
+            System.out.println("Erro na classe TelaCadastroDeProdutos" + e.getMessage());
             JOptionPane.showMessageDialog(this, "Não foi possível concluir o cadastro!\n"
                     + "Por favor, tente novamente.", "Erro", JOptionPane.WARNING_MESSAGE);
         }
@@ -422,7 +451,7 @@ public class TelaCadastroDeProdutos extends javax.swing.JFrame {
     private javax.swing.JButton btnMenu;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JComboBox<String> cbmFornecedor;
+    private javax.swing.JComboBox<Fornecedor> cmbFornecedor;
     private javax.swing.JLabel icon_logo;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

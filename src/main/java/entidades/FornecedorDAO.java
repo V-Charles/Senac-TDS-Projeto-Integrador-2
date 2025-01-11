@@ -6,6 +6,7 @@ package entidades;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 import utilitarios.JPAUtil;
 
@@ -64,6 +65,22 @@ public class FornecedorDAO {
         } finally {
             JPAUtil.closeEntityManager();
         }
+    }
+    
+    public List<Fornecedor> listarTodos(){
+        EntityManager em = JPAUtil.getEntityManager();
+        List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+        try {
+            String textoQuery = "SELECT f FROM Fornecedor f WHERE f.ativo = true";
+            Query consulta = em.createQuery(textoQuery);
+            fornecedores = consulta.getResultList();
+        }catch(Exception e) {
+            em.getTransaction().rollback();
+            throw e;
+        }finally{
+            JPAUtil.closeEntityManager();
+        }
+        return fornecedores;
     }
     
     public List<Fornecedor> listar(String filtroNome){

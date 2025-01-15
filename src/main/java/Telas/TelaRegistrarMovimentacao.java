@@ -134,7 +134,7 @@ public class TelaRegistrarMovimentacao extends javax.swing.JFrame {
         );
         panelLeftLayout.setVerticalGroup(
             panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
+            .addGap(0, 518, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelLeft, java.awt.BorderLayout.LINE_END);
@@ -174,7 +174,7 @@ public class TelaRegistrarMovimentacao extends javax.swing.JFrame {
         );
         panelRightLayout.setVerticalGroup(
             panelRightLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
+            .addGap(0, 518, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelRight, java.awt.BorderLayout.LINE_START);
@@ -359,7 +359,7 @@ public class TelaRegistrarMovimentacao extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCenterLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelCenterLayout.createSequentialGroup()
                         .addComponent(jLabel6)

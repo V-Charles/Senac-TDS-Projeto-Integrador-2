@@ -172,6 +172,11 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_menu.png"))); // NOI18N
         btnMenu.setText(" Menu");
         btnMenu.setPreferredSize(new java.awt.Dimension(120, 35));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
 
         btnVoltar.setBackground(new java.awt.Color(59, 93, 132));
         btnVoltar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
@@ -195,27 +200,33 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Tipo de movimentação:");
 
+        cbxEntrada.setBackground(new java.awt.Color(255, 255, 255));
         cbxEntrada.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         cbxEntrada.setForeground(new java.awt.Color(0, 0, 0));
         cbxEntrada.setText("Entrada");
+        cbxEntrada.setBorder(null);
         cbxEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxEntradaActionPerformed(evt);
             }
         });
 
+        cbxSaida.setBackground(new java.awt.Color(255, 255, 255));
         cbxSaida.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         cbxSaida.setForeground(new java.awt.Color(0, 0, 0));
         cbxSaida.setText("Saída");
+        cbxSaida.setBorder(null);
         cbxSaida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxSaidaActionPerformed(evt);
             }
         });
 
+        cbxReposicao.setBackground(new java.awt.Color(255, 255, 255));
         cbxReposicao.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
         cbxReposicao.setForeground(new java.awt.Color(0, 0, 0));
         cbxReposicao.setText("Reposição");
+        cbxReposicao.setBorder(null);
         cbxReposicao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxReposicaoActionPerformed(evt);
@@ -323,7 +334,7 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
                 .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxEntrada)
                     .addComponent(lblId)
@@ -334,21 +345,19 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCenterLayout.createSequentialGroup()
-                        .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxSaida))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxReposicao))
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxSaida))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cbxReposicao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         getContentPane().add(panelCenter, java.awt.BorderLayout.CENTER);
@@ -378,6 +387,12 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
         tp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        TelaMenu tm = new TelaMenu();
+        tm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnMenuActionPerformed
 
     /**
      * @param args the command line arguments

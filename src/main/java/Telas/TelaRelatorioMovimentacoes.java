@@ -179,6 +179,11 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icon_back.png"))); // NOI18N
         btnVoltar.setText(" Voltar");
         btnVoltar.setPreferredSize(new java.awt.Dimension(120, 35));
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
 
         lblOrientacao.setFont(new java.awt.Font("Arial Rounded MT Bold", 2, 12)); // NOI18N
         lblOrientacao.setForeground(new java.awt.Color(0, 0, 0));
@@ -367,6 +372,12 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
     private void cbxSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSaidaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxSaidaActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        TelaProdutos tp = new TelaProdutos();
+        tp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments

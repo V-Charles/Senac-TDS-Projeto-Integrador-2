@@ -9,6 +9,8 @@ import entidades.MovimentacaoEstoque;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,11 +25,80 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
     public TelaRelatorioMovimentacoes() {
         initComponents();
         
+        txtBuscaProduto.getDocument().addDocumentListener(new DocumentListener(){
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filtrarMovimentacoes();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filtrarMovimentacoes();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filtrarMovimentacoes();
+            }
+        });
+        
+        txtBuscaFornecedor.getDocument().addDocumentListener(new DocumentListener(){
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filtrarMovimentacoes();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filtrarMovimentacoes();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filtrarMovimentacoes();
+            }
+        });
+        
+        txtBuscaId.getDocument().addDocumentListener(new DocumentListener(){
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filtrarMovimentacoes();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filtrarMovimentacoes();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filtrarMovimentacoes();
+            }
+        });
+        
+        cbxEntrada.addActionListener(e -> filtrarMovimentacoes());
+        cbxSaida.addActionListener(e -> filtrarMovimentacoes());
+        cbxReposicao.addActionListener(e -> filtrarMovimentacoes());
+        
         MovimentacaoDAO movimentacaoDao = new MovimentacaoDAO();
         List<MovimentacaoEstoque> movimentacoes = movimentacaoDao.listar("", "", "", false, false, false);
         preencheTabela(movimentacoes);
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    
+    private void filtrarMovimentacoes(){
+        MovimentacaoDAO md = new MovimentacaoDAO();
+        String filtroProduto = txtBuscaProduto.getText().trim();
+        String filtroFornecedor = txtBuscaFornecedor.getText().trim();
+        String filtroId = txtBuscaId.getText().trim();
+        
+        boolean filtroEntrada = cbxEntrada.isSelected();
+        boolean filtroSaida = cbxSaida.isSelected();
+        boolean filtroReposicao = cbxReposicao.isSelected();
+        
+        List<MovimentacaoEstoque> movimentacoes = md.listar(filtroProduto, filtroFornecedor, filtroId, filtroEntrada, filtroSaida, filtroReposicao);
+        preencheTabela(movimentacoes);
     }
     
     public void preencheTabela(List<MovimentacaoEstoque> movimentacoes){
@@ -83,7 +154,7 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
         lblFornecedor = new javax.swing.JLabel();
         txtBuscaId = new javax.swing.JTextField();
         txtBuscaProduto = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtBuscaFornecedor = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
@@ -106,7 +177,7 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
             .addGroup(panelTopLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(893, Short.MAX_VALUE))
+                .addContainerGap(887, Short.MAX_VALUE))
         );
         panelTopLayout.setVerticalGroup(
             panelTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +215,7 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
         panelBottomLayout.setHorizontalGroup(
             panelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBottomLayout.createSequentialGroup()
-                .addContainerGap(1241, Short.MAX_VALUE)
+                .addContainerGap(1235, Short.MAX_VALUE)
                 .addComponent(icon_logo)
                 .addContainerGap())
         );
@@ -292,9 +363,9 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
             }
         });
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField3.setBorder(null);
+        txtBuscaFornecedor.setBackground(new java.awt.Color(255, 255, 255));
+        txtBuscaFornecedor.setForeground(new java.awt.Color(0, 0, 0));
+        txtBuscaFornecedor.setBorder(null);
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -309,25 +380,32 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
             .addGroup(panelCenterLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jSeparator1)
                     .addGroup(panelCenterLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addGap(304, 304, 304)
+                        .addComponent(jLabel3)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(panelCenterLayout.createSequentialGroup()
-                        .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(lblOrientacao)
-                            .addComponent(cbxEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(254, 254, 254)
-                        .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(panelCenterLayout.createSequentialGroup()
-                                .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCenterLayout.createSequentialGroup()
+                        .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCenterLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCenterLayout.createSequentialGroup()
+                                .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblOrientacao)
+                                    .addComponent(cbxEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbxSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(144, 144, 144)
+                                .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCenterLayout.createSequentialGroup()
+                                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jSeparator3))
                                     .addGroup(panelCenterLayout.createSequentialGroup()
                                         .addComponent(lblId)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -335,23 +413,19 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(lblProduto)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtBuscaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelCenterLayout.createSequentialGroup()
-                                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtBuscaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(panelCenterLayout.createSequentialGroup()
                                         .addComponent(lblFornecedor)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
-                                    .addComponent(jSeparator4))))
-                        .addGap(0, 2, Short.MAX_VALUE))
-                    .addGroup(panelCenterLayout.createSequentialGroup()
-                        .addComponent(cbxReposicao)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                        .addComponent(txtBuscaFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                                    .addComponent(jSeparator4))
+                                .addGap(0, 106, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCenterLayout.createSequentialGroup()
+                                .addComponent(cbxReposicao)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         panelCenterLayout.setVerticalGroup(
             panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,7 +433,7 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblOrientacao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -372,13 +446,14 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
                     .addComponent(lblProduto)
                     .addComponent(txtBuscaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFornecedor)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBuscaFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxSaida)
                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxSaida))
+                    .addGroup(panelCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cbxReposicao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
@@ -474,7 +549,6 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lblFornecedor;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblOrientacao;
@@ -485,6 +559,7 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
     private javax.swing.JPanel panelRight;
     private javax.swing.JPanel panelTop;
     private javax.swing.JTable tblMovimentacoes;
+    private javax.swing.JTextField txtBuscaFornecedor;
     private javax.swing.JTextField txtBuscaId;
     private javax.swing.JTextField txtBuscaProduto;
     // End of variables declaration//GEN-END:variables

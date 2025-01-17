@@ -16,6 +16,19 @@ import utilitarios.JPAUtil;
  */
 public class MovimentacaoDAO {
     
+    public void registraMov(MovimentacaoEstoque me){
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(me);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Erro gerado no método registraMov na classe MovimentacaoDAO\n" + e.getMessage());
+        } finally {
+            JPAUtil.closeEntityManager();
+        }
+    }
+    
     public List<MovimentacaoEstoque> listar(String filtroProduto, String filtroFornecedor, String filtroId, boolean filtroEntrada, boolean filtroSaida, boolean filtroReposicao){
         EntityManager em = JPAUtil.getEntityManager();
         List<MovimentacaoEstoque> movimentacoes = new ArrayList<>();

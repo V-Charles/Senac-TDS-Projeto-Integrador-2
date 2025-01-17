@@ -4,6 +4,8 @@
  */
 package Telas;
 
+import entidades.MovimentacaoDAO;
+import entidades.MovimentacaoEstoque;
 import entidades.Produto;
 import entidades.TipoMovimentacao;
 import java.time.LocalDate;
@@ -452,9 +454,26 @@ public class TelaRegistrarMovimentacao extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        MovimentacaoEstoque novoRegistro = new MovimentacaoEstoque();
         try {
             if(!txtQuantidade.getText().isEmpty()){
+                int quantidadeMovimentada = Integer.parseInt(txtQuantidade.getText());
+                TipoMovimentacao tipoMovimentacao = (TipoMovimentacao) cmbTipoMovimentacao.getSelectedItem();
+                LocalDate dataMovimentacao = LocalDate.now();
                 
+                novoRegistro.setProduto(produtoParaMov);
+                novoRegistro.setFornecedor(produtoParaMov.getFornecedor());
+                novoRegistro.setQuantidadeMovimentada(quantidadeMovimentada);
+                novoRegistro.setTipoMovimentacao(tipoMovimentacao);
+                novoRegistro.setDataMovimentacao(dataMovimentacao);
+                
+                MovimentacaoDAO md = new MovimentacaoDAO();
+                md.registraMov(novoRegistro);
+                JOptionPane.showMessageDialog(this, "Movimentação registrada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+                
+                TelaRelatorioMovimentacoes trm = new TelaRelatorioMovimentacoes();
+                trm.setVisible(true);
+                this.dispose();
             }else {
                 JOptionPane.showMessageDialog(this, "É necessário inserir a quantidade!", "Erro", JOptionPane.INFORMATION_MESSAGE);
             }

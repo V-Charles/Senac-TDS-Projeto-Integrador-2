@@ -18,7 +18,7 @@ public class MovimentacaoDAO {
     
     public List<MovimentacaoEstoque> listar(String filtroProduto, String filtroFornecedor, String filtroId, boolean filtroEntrada, boolean filtroSaida, boolean filtroReposicao){
         EntityManager em = JPAUtil.getEntityManager();
-        List movimentacoes = null;
+        List<MovimentacaoEstoque> movimentacoes = new ArrayList<>();
         try {
             String textoQuery = "SELECT m FROM MovimentacaoEstoque m " +
                     "JOIN m.produto p " +
@@ -45,7 +45,7 @@ public class MovimentacaoDAO {
                 consulta.setParameter("tipo", tipos);
             }
             movimentacoes = consulta.getResultList();
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             System.out.println("Erro gerado: " + e.getMessage());
         } finally {
             JPAUtil.closeEntityManager();

@@ -4,7 +4,12 @@
  */
 package Telas;
 
+import entidades.MovimentacaoDAO;
+import entidades.MovimentacaoEstoque;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,7 +23,32 @@ public class TelaRelatorioMovimentacoes extends javax.swing.JFrame {
     public TelaRelatorioMovimentacoes() {
         initComponents();
         
+        MovimentacaoDAO movimentacaoDao = new MovimentacaoDAO();
+        List<MovimentacaoEstoque> movimentacoes = movimentacaoDao.listar("", "", "", false, false, false);
+        preencheTabela(movimentacoes);
+        
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    
+    public void preencheTabela(List<MovimentacaoEstoque> movimentacoes){
+        String colunas[] = {"Id", "Tipo de movimentação", "Produto", "Quantidade", "Fornecedor", "Data da movimentação"};
+        String dados[][] = new String[movimentacoes.size()][colunas.length];
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/y");
+        int i = 0;
+        for(MovimentacaoEstoque m : movimentacoes){
+            dados[i] = new String[]{
+                String.valueOf(m.getId()),
+                m.getTipoMovimentacao().name(),
+                m.getProduto().getNomeProduto(),
+                String.valueOf(m.getQuantidadeMovimentada()),
+                m.getFornecedor() != null ? m.getFornecedor().getNomeFornecedor() : "Fornecedor não encontrado",
+                m.getDataMovimentacao().format(formatter)
+            };
+            i++;
+        }
+        DefaultTableModel model = new DefaultTableModel(dados, colunas);
+        tblMovimentacoes.setModel(model);
     }
 
     /**
